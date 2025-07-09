@@ -1,12 +1,12 @@
-## Web Real Time Communication (WebRTC)
+# Web Real Time Communication (WebRTC)
 
-# Why was it created?
+## Why was it created?
 
-Imagine you're trying to video chat with a friend. Traditionally, your video and audio would have to travel from your computer → to a server → then to your friend's computer. This creates delays, costs money to run servers, and gives companies control over your private conversations.
+Imagine you're trying to video chat with a friend. Traditionally, your video and audio would have to travel from your computer -> to a server -> then to your friend's computer. This creates delays, costs money to run servers, and gives companies control over your private conversations.
 
 WebRTC was created to solve this: **What if browsers could talk directly to each other?**
 
-# What Problem Does It Solve?
+## What Problem Does It Solve?
 
 Before WebRTC, real-time communication on the web was painful:
 - **Plugins required**: You needed Flash, Java applets, or other plugins
@@ -17,25 +17,24 @@ Before WebRTC, real-time communication on the web was painful:
 
 WebRTC enables **peer-to-peer** communication directly between browsers. Your video call data goes straight from you to your friend, with no middleman.
 
-# Core Concepts (The Simple Version)
+## Core Features
 
-## 1. Peer-to-Peer (P2P)
-Think of it like handing someone a letter directly instead of mailing it through the post office. Faster, more private, no middleman.
+### 1. Peer-to-Peer (P2P)
 
-## 2. Three Types of Data
+### 2. Three Types of Data
 WebRTC can send three things directly between browsers:
 - **Audio** (voice calls)
 - **Video** (video calls) 
 - **Arbitrary data** (files, game moves, chat messages)
 
-## 3. The "Handshake" Problem
+### 3. The "Handshake" Problem
 Here's the tricky part: How do two browsers find each other on the internet? It's like trying to call someone when you don't know their phone number.
 
 This is where **signaling** comes in - you still need a server to help browsers discover each other, but once they connect, they can talk directly.
 
-# How It Actually Works (Step by Step)
+## How It Actually Works (Step by Step)
 
-## Step 1: The Introduction (Signaling)
+### Step 1: The Introduction (Signaling)
 ```
 You: "Hey server, I want to video chat!"
 Server: "Cool, here's how others can find you"
@@ -45,7 +44,7 @@ Server: "Here's how to reach them"
 
 The server is like a matchmaker - it introduces you, then gets out of the way.
 
-## Step 2: The Negotiation (Offer/Answer)
+### Step 2: The Negotiation (Offer/Answer)
 Your browser creates an "offer" - basically saying:
 - "I can send video at these qualities"
 - "I can send audio in these formats"
@@ -56,7 +55,7 @@ Your friend's browser responds with an "answer":
 - "I prefer this audio format"
 - "Here's how to reach me too"
 
-## Step 3: The Connection (ICE)
+### Step 3: The Connection (ICE)
 This is the technical magic. Your browsers try multiple ways to connect:
 1. **Direct connection**: Can we talk directly? (Often blocked by firewalls)
 2. **STUN server**: Help me figure out my public IP address
@@ -67,49 +66,49 @@ Think of it like trying to meet someone:
 2. Call to confirm the address (STUN)
 3. Meet at a mutual friend's house instead (TURN)
 
-## Step 4: The Communication
+### Step 4: The Communication
 Once connected, data flows directly between browsers. No servers involved!
 
-# Real-World Applications
+## Real-World Applications
 
-## Video Conferencing
+### Video Conferencing
 - **Zoom, Google Meet**: Use WebRTC for the actual video/audio
 - **Discord**: Voice channels use WebRTC
 - **WhatsApp Web**: Video calls
 
-## Gaming
+### Gaming
 - **Multiplayer games**: Send game state directly between players
 - **Lower latency**: No server round-trip for quick actions
 
-## File Sharing
+### File Sharing
 - **Send files directly**: No upload to server, then download
 - **WeTransfer-style apps**: But completely peer-to-peer
 
-## Collaborative Apps
+### Collaborative Apps
 - **Real-time document editing**: Share cursor positions, text changes
 - **Whiteboard apps**: Draw together in real-time
 
-# Common Gotchas (Things That Trip People Up)
+## Confusing Details
 
-## 1. "I thought it was serverless!"
+### 1. It's not serverless
 WebRTC still needs servers for:
 - **Signaling**: Helping browsers find each other
 - **STUN/TURN**: Dealing with firewalls and NAT
 - **Authentication**: Verifying who can connect
 
-## 2. Firewall and NAT Issues
+### 2. Firewall and NAT Issues
 Many networks block direct connections. About 80% of WebRTC connections need a TURN server to work.
 
-## 3. Battery Drain
+### 3. Battery Drain
 Direct video processing uses more battery than server-processed video.
 
-## 4. Not All Data Types Work
+### 4. Not All Data Types Work
 WebRTC has specific media formats it supports. You can't just send any video format.
 
-## 5. Browser Compatibility
+### 5. Browser Compatibility
 While widely supported now, older browsers or some mobile browsers have limitations.
 
-# Code Example
+## Code Example
 
 **The 3 Core Steps:**
 1. **Create peer connection** (with STUN server for NAT traversal)
@@ -139,21 +138,21 @@ async def webrtc_connection():
 # Real apps need: signaling server, answer handling, ICE candidates
 ```
 
-# When Should You Use WebRTC?
+## When Should You Use WebRTC?
 
-## Good For:
+### Good For:
 - Real-time communication (video/audio calls)
 - Low-latency gaming
 - Peer-to-peer file sharing
 - Collaborative real-time apps
 
-## Not Great For:
+### Not Great For:
 - One-to-many broadcasting (streaming to thousands)
 - Persistent data storage
 - When you need guaranteed delivery
 - Mobile apps with limited battery
 
-# The Big Picture
+## The Big Picture
 
 WebRTC represents a shift from centralized to decentralized communication. Instead of all communication flowing through major company's servers, it enables direct browser-to-browser connections.
 ---
